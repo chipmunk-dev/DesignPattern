@@ -1,5 +1,6 @@
 import adapter.*;
 import aop.AopBrowser;
+import decorator.*;
 import proxy.Browser;
 import proxy.BrowserProxy;
 import proxy.IBrowser;
@@ -43,6 +44,7 @@ public class Main {
         browser.show();
         */
 
+        /*
         AtomicLong start = new AtomicLong();
         AtomicLong end = new AtomicLong();
 
@@ -62,8 +64,22 @@ public class Main {
 
         aopBrowser.show();
         System.out.println(end.get());
+        */
 
+        ICar audi = new Audi(1000);
+        audi.showPrice();
 
+        // a3
+        ICar a3 = new A3(audi, "A3");
+        a3.showPrice();
+
+        // a4
+        ICar a4 = new A4(audi, "A3");
+        a4.showPrice();
+
+        // a5
+        ICar a5 = new A5(audi, "A3");
+        a5.showPrice();
     }
 
     // 콘센트
