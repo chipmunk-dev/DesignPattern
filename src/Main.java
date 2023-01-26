@@ -1,6 +1,8 @@
 import adapter.*;
 import aop.AopBrowser;
 import decorator.*;
+import observer.Button;
+import observer.IButtonListener;
 import proxy.Browser;
 import proxy.BrowserProxy;
 import proxy.IBrowser;
@@ -66,6 +68,7 @@ public class Main {
         System.out.println(end.get());
         */
 
+        /*
         ICar audi = new Audi(1000);
         audi.showPrice();
 
@@ -80,6 +83,21 @@ public class Main {
         // a5
         ICar a5 = new A5(audi, "A3");
         a5.showPrice();
+         */
+
+        Button button = new Button("버튼");
+        button.addListener(new IButtonListener() {
+            @Override
+            public void clickEvent(String event) {
+                System.out.println(event);
+            }
+        });
+
+        button.click("메세지 전달 : click1");
+        button.click("메세지 전달 : click2");
+        button.click("메세지 전달 : click3");
+        button.click("메세지 전달 : click4");
+
     }
 
     // 콘센트
