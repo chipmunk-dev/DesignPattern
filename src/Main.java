@@ -1,6 +1,10 @@
 import adapter.*;
 import aop.AopBrowser;
 import decorator.*;
+import facade.Ftp;
+import facade.Reader;
+import facade.SftpClient;
+import facade.Writer;
 import observer.Button;
 import observer.IButtonListener;
 import proxy.Browser;
@@ -85,6 +89,7 @@ public class Main {
         a5.showPrice();
          */
 
+        /*
         Button button = new Button("버튼");
         button.addListener(new IButtonListener() {
             @Override
@@ -97,6 +102,30 @@ public class Main {
         button.click("메세지 전달 : click2");
         button.click("메세지 전달 : click3");
         button.click("메세지 전달 : click4");
+         */
+
+        Ftp ftpClient = new Ftp("www.foo.co.kr", 22, "/home/etc");
+
+        ftpClient.connect();
+        ftpClient.moveDirectory();
+
+        Writer writer = new Writer("text.tmp");
+        writer.fileConnect();
+        writer.write();
+
+        Reader reader = new Reader("text.tmp");
+        reader.fileConnect();
+        reader.fileRead();
+
+        reader.fileDisconnect();
+        writer.fileDisConnect();
+        ftpClient.disConnect();
+
+        SftpClient sftpClient = new SftpClient("www.foo.co.kr", 22, "/home/etc", "text.tmp");
+        sftpClient.connect();
+        sftpClient.write();
+        sftpClient.read();
+        sftpClient.disConnect();
 
     }
 
